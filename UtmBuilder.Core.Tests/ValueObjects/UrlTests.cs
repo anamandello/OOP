@@ -28,7 +28,7 @@ public class UrlTests
   [ExpectedException(typeof(InvalidUrlException))]
   public void ShouldReturnExceptionWhenUrlIsInvalid2()
   {
-        _ = new Url(InvalidUrl);
+    _ = new Url(InvalidUrl);
   }
 
   [TestMethod]
@@ -39,30 +39,30 @@ public class UrlTests
   }
 
   [TestMethod]
-    [DataRow(" ", true)]
-    [DataRow("http", true)]
-    [DataRow("banana", true)]
-    [DataRow("https://balta.io", false)]
-    public void TestUrl(
-        string link,
-        bool expectException)
+  [DataRow(" ", true)]
+  [DataRow("http", true)]
+  [DataRow("banana", true)]
+  [DataRow("https://balta.io", false)]
+  public void TestUrl(
+    string link,
+    bool expectException)
+  {
+    if (expectException)
     {
-        if (expectException)
-        {
-            try
-            {
-                new Url(link);
-                Assert.Fail();
-            }
-            catch (InvalidUrlException)
-            {
-                Assert.IsTrue(true);
-            }
-        }
-        else
-        {
-            new Url(link);
-            Assert.IsTrue(true);
-        }
+      try
+      {
+        new Url(link);
+        Assert.Fail();
+      }
+      catch (InvalidUrlException)
+      {
+        Assert.IsTrue(true);
+      }
     }
+    else
+    {
+      new Url(link);
+      Assert.IsTrue(true);
+    }
+  }
 }
