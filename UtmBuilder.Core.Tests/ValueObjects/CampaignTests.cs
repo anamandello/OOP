@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using UtmBuilder.Core.ValueObjects;
 
 namespace UtmBuilder.Core.Tests;
@@ -21,6 +22,11 @@ public class CampaignTests{
       {
         new Campaign(source, medium, name);
         Assert.Fail();
+      }
+      catch (InvalidCampaignException e)
+        when (e.Message == "Source is invalid")
+      {
+          Assert.IsTrue(true);
       }
       catch (InvalidCampaignException)
       {
